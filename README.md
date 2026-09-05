@@ -1,4 +1,5 @@
 ### [Only Scroll Weapons](https://www.nexusmods.com/warhammer40kdarktide/mods/1260)
+<img width="1067" height="497" alt="image" src="https://github.com/user-attachments/assets/724f91ec-18ad-4bac-a8ff-54ed4f897a6f" />
 
 Standalone quality-of-life mod that limits mouse scroll wheel weapon selection to strictly switch between your melee and ranged weapons. Prevents accidentally scrolling into Blitz abilities, grenades, or pocketables during combat. 
 
