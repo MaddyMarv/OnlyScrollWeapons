@@ -23,10 +23,10 @@ return {
 					{
 						setting_id = "scroll_cooldown",
 						type = "numeric",
-						default_value = 0.2,
-						range = { 0.1, 1.0 },
-						decimals_number = 1,
-						step_size_value = 0.1,
+						default_value = 0.20,
+						range = { 0.00, 1.00 },
+						decimals_number = 2,
+						step_size_value = 0.01,
 					},
 					{
 						setting_id = "scroll_threshold",

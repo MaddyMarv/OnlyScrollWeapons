@@ -8,12 +8,12 @@ local WIELD_1_IDX = 12
 local WIELD_2_IDX = 13
 
 local NOTCH_RESET_TIME = 0.15
-local last_wield_t = 0
+local last_wield_t = -100
 local accumulated_notches = 0
 local last_notch_t = 0
 
 local function _reset_state()
-	last_wield_t = 0
+	last_wield_t = -100
 	accumulated_notches = 0
 	last_notch_t = 0
 end
@@ -44,7 +44,7 @@ mod:hook(HumanInputHandler, "pre_update", function(func, self, dt, t, input_serv
 	local now = t or (Managers.time and Managers.time:has_timer("gameplay") and Managers.time:time("gameplay")) or 0
 	local cooldown = mod:get("scroll_cooldown") or 0.20
 
-	if now < last_wield_t + cooldown then
+	if cooldown > 0 and now < last_wield_t + cooldown then
 		cache[SCROLL_DOWN_IDX] = false
 		cache[SCROLL_UP_IDX] = false
 		accumulated_notches = 0
@@ -150,7 +150,7 @@ mod:hook(PlayerUnitVisualLoadout, "slot_name_from_wield_input", function(func, w
 	local now = Managers.time and Managers.time:has_timer("gameplay") and Managers.time:time("gameplay") or 0
 	local cooldown = mod:get("scroll_cooldown") or 0.20
 
-	if now > 0 and now < last_wield_t + cooldown then
+	if cooldown > 0 and now > 0 and now < last_wield_t + cooldown then
 		return inventory_component.wielded_slot
 	end
 
