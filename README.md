@@ -5,6 +5,8 @@ Standalone quality-of-life mod that limits mouse scroll wheel weapon selection t
 
 **Options:**
 - Scroll Mode [Cycle (Melee <-> Gun), Directional]
+- Scroll Cooldown [0.00s - 1.00s]
+- Scroll Sensitivity [1 - 5 Notches]
 - Invert Directional Scroll
 - Cycle If Already Equipped
 - Scroll From Non-Weapon Slot [Melee (Primary), Gun (Secondary)]
