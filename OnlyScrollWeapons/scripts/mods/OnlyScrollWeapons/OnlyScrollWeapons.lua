@@ -141,13 +141,7 @@ mod:hook(HumanInputHandler, "pre_update", function(func, self, dt, t, input_serv
 				return
 			end
 		else
-			local non_weapon_target = mod:get("non_weapon_scroll_target") or "slot_primary"
-
-			if scroll_up then
-				target_slot = non_weapon_target
-			else
-				target_slot = non_weapon_target == "slot_primary" and "slot_secondary" or "slot_primary"
-			end
+			target_slot = mod:get("non_weapon_scroll_target") or "slot_primary"
 		end
 	else
 		local invert = mod:get("invert_direction") or false
@@ -228,13 +222,7 @@ mod:hook(PlayerUnitVisualLoadout, "slot_name_from_wield_input", function(func, w
 				return wielded_slot
 			end
 		else
-			local non_weapon_target = mod:get("non_weapon_scroll_target") or "slot_primary"
-
-			if is_scroll_up then
-				target_slot = non_weapon_target
-			else
-				target_slot = non_weapon_target == "slot_primary" and "slot_secondary" or "slot_primary"
-			end
+			target_slot = mod:get("non_weapon_scroll_target") or "slot_primary"
 		end
 	else
 		local invert = mod:get("invert_direction") or false
