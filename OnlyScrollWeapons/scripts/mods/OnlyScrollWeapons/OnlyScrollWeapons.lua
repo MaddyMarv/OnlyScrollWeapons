@@ -96,10 +96,9 @@ mod:hook(HumanInputHandler, "pre_update", function(func, self, dt, t, input_serv
 
 	local inv = unit_data:read_component("inventory")
 	local wielded_slot = inv and inv.wielded_slot
-	local action_unwield_comp = unit_data:read_component("action_unwield")
 
-	if action_unwield_comp and action_unwield_comp.slot_to_wield and action_unwield_comp.slot_to_wield ~= "none" then
-		wielded_slot = action_unwield_comp.slot_to_wield
+	if not wielded_slot or wielded_slot == "none" then
+		wielded_slot = inv and (inv.previously_wielded_weapon_slot ~= "none" and inv.previously_wielded_weapon_slot or inv.previously_wielded_slot)
 	end
 
 	local mode = mod:get("scroll_mode") or "cycle"
@@ -192,6 +191,10 @@ mod:hook(PlayerUnitVisualLoadout, "slot_name_from_wield_input", function(func, w
 	end
 
 	local wielded_slot = inventory_component.wielded_slot
+
+	if not wielded_slot or wielded_slot == "none" then
+		wielded_slot = inventory_component.previously_wielded_weapon_slot ~= "none" and inventory_component.previously_wielded_weapon_slot or inventory_component.previously_wielded_slot
+	end
 	local mode = mod:get("scroll_mode") or "cycle"
 	local target_slot
 
