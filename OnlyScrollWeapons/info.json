@@ -1,0 +1,17 @@
+{
+    "name": "Only Scroll Weapons",
+    "author": "IndicaBunny",
+    "version": "1.0",
+    "homepage": "https://www.nexusmods.com/warhammer40kdarktide/mods/1260",
+    "source": "https://github.com/MaddyMarv/OnlyScrollWeapons",
+    "funding": {
+        "kofi": "https://ko-fi.com/indicabunny"
+    },
+    "description": "Limits scroll wheel weapon selection to only switch between melee and gun, preventing accidental cycling into Blitz.",
+    "order": {
+        "require": [],
+        "this_before": [],
+        "this_after": []
+    },
+    "localization": {}
+}
