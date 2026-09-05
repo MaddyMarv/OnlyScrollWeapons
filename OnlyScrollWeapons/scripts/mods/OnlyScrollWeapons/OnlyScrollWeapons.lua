@@ -7,6 +7,13 @@ local SCROLL_UP_IDX = 11
 local WIELD_1_IDX = 12
 local WIELD_2_IDX = 13
 
+local WEAPON_SCROLL_ORDER = {
+	"slot_secondary",
+	"slot_primary",
+	slot_secondary = 1,
+	slot_primary = 2,
+}
+
 local NOTCH_RESET_TIME = 0.15
 local last_wield_t = -100
 local accumulated_notches = 0
@@ -99,12 +106,48 @@ mod:hook(HumanInputHandler, "pre_update", function(func, self, dt, t, input_serv
 	local target_slot
 
 	if mode == "cycle" then
-		if wielded_slot == "slot_primary" then
-			target_slot = "slot_secondary"
-		elseif wielded_slot == "slot_secondary" then
-			target_slot = "slot_primary"
+		local slot_index = WEAPON_SCROLL_ORDER[wielded_slot]
+
+		if slot_index then
+			local wrap = true
+			local input_settings_table = self._input_settings_table
+
+			if input_settings_table and input_settings_table.weapon_switch_scroll_wrap ~= nil then
+				wrap = input_settings_table.weapon_switch_scroll_wrap
+			elseif Managers.save then
+				local account_data = Managers.save:account_data()
+
+				if account_data and account_data.input_settings and account_data.input_settings.weapon_switch_scroll_wrap ~= nil then
+					wrap = account_data.input_settings.weapon_switch_scroll_wrap
+				end
+			end
+
+			local index_change = scroll_up and 1 or -1
+			local next_slot_index = slot_index + index_change
+
+			if wrap then
+				if math.index_wrapper then
+					next_slot_index = math.index_wrapper(next_slot_index, 2)
+				else
+					next_slot_index = ((next_slot_index - 1) % 2) + 1
+				end
+			end
+
+			target_slot = WEAPON_SCROLL_ORDER[next_slot_index]
+
+			if not target_slot or target_slot == wielded_slot then
+				cache[SCROLL_DOWN_IDX] = false
+				cache[SCROLL_UP_IDX] = false
+				return
+			end
 		else
-			target_slot = mod:get("non_weapon_scroll_target") or "slot_primary"
+			local non_weapon_target = mod:get("non_weapon_scroll_target") or "slot_primary"
+
+			if scroll_up then
+				target_slot = non_weapon_target
+			else
+				target_slot = non_weapon_target == "slot_primary" and "slot_secondary" or "slot_primary"
+			end
 		end
 	else
 		local invert = mod:get("invert_direction") or false
@@ -159,12 +202,39 @@ mod:hook(PlayerUnitVisualLoadout, "slot_name_from_wield_input", function(func, w
 	local target_slot
 
 	if mode == "cycle" then
-		if wielded_slot == "slot_primary" then
-			target_slot = "slot_secondary"
-		elseif wielded_slot == "slot_secondary" then
-			target_slot = "slot_primary"
+		local slot_index = WEAPON_SCROLL_ORDER[wielded_slot]
+
+		if slot_index then
+			local wrap = input_extension and input_extension:get("weapon_switch_scroll_wrap")
+
+			if wrap == nil then
+				wrap = true
+			end
+
+			local index_change = is_scroll_up and 1 or -1
+			local next_slot_index = slot_index + index_change
+
+			if wrap then
+				if math.index_wrapper then
+					next_slot_index = math.index_wrapper(next_slot_index, 2)
+				else
+					next_slot_index = ((next_slot_index - 1) % 2) + 1
+				end
+			end
+
+			target_slot = WEAPON_SCROLL_ORDER[next_slot_index]
+
+			if not target_slot or target_slot == wielded_slot then
+				return wielded_slot
+			end
 		else
-			target_slot = mod:get("non_weapon_scroll_target") or "slot_primary"
+			local non_weapon_target = mod:get("non_weapon_scroll_target") or "slot_primary"
+
+			if is_scroll_up then
+				target_slot = non_weapon_target
+			else
+				target_slot = non_weapon_target == "slot_primary" and "slot_secondary" or "slot_primary"
+			end
 		end
 	else
 		local invert = mod:get("invert_direction") or false
