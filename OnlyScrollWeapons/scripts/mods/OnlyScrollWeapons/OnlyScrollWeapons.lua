@@ -145,7 +145,7 @@ mod:hook(HumanInputHandler, "pre_update", function(func, self, dt, t, input_serv
 		end
 	else
 		local invert = mod:get("invert_direction") or false
-		local wants_primary = (scroll_up and not invert) or (scroll_down and invert)
+		local wants_primary = (scroll_down and not invert) or (scroll_up and invert)
 		local desired_slot = wants_primary and "slot_primary" or "slot_secondary"
 
 		if wielded_slot == desired_slot then
@@ -226,7 +226,7 @@ mod:hook(PlayerUnitVisualLoadout, "slot_name_from_wield_input", function(func, w
 		end
 	else
 		local invert = mod:get("invert_direction") or false
-		local wants_primary = (is_scroll_up and not invert) or (is_scroll_down and invert)
+		local wants_primary = (is_scroll_down and not invert) or (is_scroll_up and invert)
 		local desired_slot = wants_primary and "slot_primary" or "slot_secondary"
 
 		if wielded_slot == desired_slot then

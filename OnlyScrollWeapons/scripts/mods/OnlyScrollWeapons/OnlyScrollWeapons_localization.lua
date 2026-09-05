@@ -39,7 +39,7 @@ return {
 		en = "Invert Directional Scroll",
 	},
 	invert_direction_description = {
-		en = "Default directional: Scroll Up = Melee, Scroll Down = Gun.\nWhen inverted: Scroll Up = Gun, Scroll Down = Melee.",
+		en = "Default directional: Scroll Up = Gun, Scroll Down = Melee.\nWhen inverted: Scroll Up = Melee, Scroll Down = Gun.",
 	},
 	directional_cycle_on_repeat = {
 		en = "Cycle If Already Equipped",
