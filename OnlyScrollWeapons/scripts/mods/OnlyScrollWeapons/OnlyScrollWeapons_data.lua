@@ -21,6 +21,22 @@ return {
 						},
 					},
 					{
+						setting_id = "scroll_cooldown",
+						type = "numeric",
+						default_value = 0.2,
+						range = { 0.1, 1.0 },
+						decimals_number = 1,
+						step_size_value = 0.1,
+					},
+					{
+						setting_id = "scroll_threshold",
+						type = "numeric",
+						default_value = 1,
+						range = { 1, 5 },
+						decimals_number = 0,
+						step_size_value = 1,
+					},
+					{
 						setting_id = "invert_direction",
 						type = "checkbox",
 						default_value = false,

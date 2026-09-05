@@ -7,6 +7,25 @@ local SCROLL_UP_IDX = 11
 local WIELD_1_IDX = 12
 local WIELD_2_IDX = 13
 
+local NOTCH_RESET_TIME = 0.15
+local last_wield_t = 0
+local accumulated_notches = 0
+local last_notch_t = 0
+
+local function _reset_state()
+	last_wield_t = 0
+	accumulated_notches = 0
+	last_notch_t = 0
+end
+
+mod.on_disabled = function(initial_call)
+	_reset_state()
+end
+
+mod.on_game_state_changed = function(status, state_name)
+	_reset_state()
+end
+
 mod:hook(HumanInputHandler, "pre_update", function(func, self, dt, t, input_service, ui_interaction_action)
 	func(self, dt, t, input_service, ui_interaction_action)
 
@@ -22,16 +41,49 @@ mod:hook(HumanInputHandler, "pre_update", function(func, self, dt, t, input_serv
 		return
 	end
 
+	local now = t or (Managers.time and Managers.time:has_timer("gameplay") and Managers.time:time("gameplay")) or 0
+	local cooldown = mod:get("scroll_cooldown") or 0.20
+
+	if now < last_wield_t + cooldown then
+		cache[SCROLL_DOWN_IDX] = false
+		cache[SCROLL_UP_IDX] = false
+		accumulated_notches = 0
+		return
+	end
+
+	local threshold = mod:get("scroll_threshold") or 1
+
+	if threshold > 1 then
+		if now - last_notch_t > NOTCH_RESET_TIME then
+			accumulated_notches = 0
+		end
+
+		accumulated_notches = accumulated_notches + 1
+		last_notch_t = now
+
+		if accumulated_notches < threshold then
+			cache[SCROLL_DOWN_IDX] = false
+			cache[SCROLL_UP_IDX] = false
+			return
+		end
+	end
+
+	accumulated_notches = 0
+
 	local player = self._player
 	local player_unit = player and player.player_unit
 
 	if not player_unit or not ALIVE[player_unit] then
+		cache[SCROLL_DOWN_IDX] = false
+		cache[SCROLL_UP_IDX] = false
 		return
 	end
 
 	local unit_data = ScriptUnit.has_extension(player_unit, "unit_data_system")
 
 	if not unit_data then
+		cache[SCROLL_DOWN_IDX] = false
+		cache[SCROLL_UP_IDX] = false
 		return
 	end
 
@@ -74,6 +126,7 @@ mod:hook(HumanInputHandler, "pre_update", function(func, self, dt, t, input_serv
 
 	cache[SCROLL_DOWN_IDX] = false
 	cache[SCROLL_UP_IDX] = false
+	last_wield_t = now
 
 	if target_slot == "slot_primary" then
 		cache[WIELD_1_IDX] = true
@@ -92,6 +145,13 @@ mod:hook(PlayerUnitVisualLoadout, "slot_name_from_wield_input", function(func, w
 
 	if not is_scroll_down and not is_scroll_up then
 		return func(wield_input, inventory_component, visual_loadout_extension, weapon_extension, ability_extension, input_extension)
+	end
+
+	local now = Managers.time and Managers.time:has_timer("gameplay") and Managers.time:time("gameplay") or 0
+	local cooldown = mod:get("scroll_cooldown") or 0.20
+
+	if now > 0 and now < last_wield_t + cooldown then
+		return inventory_component.wielded_slot
 	end
 
 	local wielded_slot = inventory_component.wielded_slot
@@ -123,6 +183,7 @@ mod:hook(PlayerUnitVisualLoadout, "slot_name_from_wield_input", function(func, w
 	end
 
 	if visual_loadout_extension:can_wield(target_slot) then
+		last_wield_t = now
 		return target_slot
 	end
 

@@ -23,6 +23,18 @@ return {
 	scroll_mode_directional = {
 		en = "Directional",
 	},
+	scroll_cooldown = {
+		en = "Scroll Cooldown (Seconds)",
+	},
+	scroll_cooldown_description = {
+		en = "Minimum delay between scroll weapon switches. Discards extra scroll wheel ticks during a flick so you don't scroll past your weapon.",
+	},
+	scroll_threshold = {
+		en = "Scroll Sensitivity (Notches)",
+	},
+	scroll_threshold_description = {
+		en = "Number of scroll wheel notches required within a burst before switching weapons. Set to 1 for instant response, or higher to prevent accidental micro-scrolls.",
+	},
 	invert_direction = {
 		en = "Invert Directional Scroll",
 	},
