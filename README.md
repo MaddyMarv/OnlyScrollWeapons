@@ -6,10 +6,11 @@ Standalone quality-of-life mod that limits mouse scroll wheel weapon selection t
 **Options:**
 
 **General**
-- Enable Weapon Scroll Only
-- Wrap Around Scrolling
-- Invert Scroll Direction
-- Ignore Grenades on Scroll
-- Ignore Blitz / Pocketable on Scroll
+- Scroll Mode [Cycle (Melee <-> Gun), Directional]
+- Scroll Cooldown (Seconds)
+- Scroll Sensitivity (Notches)
+- Invert Directional Scroll
+- Cycle If Already Equipped
+- Scroll From Non-Weapon Slot [Melee (Primary), Gun (Secondary)]
 
 🔗 **Links:** [Source Code](https://github.com/MaddyMarv/OnlyScrollWeapons) | [Nexus Mods Profile](https://www.nexusmods.com/profile/indicabunny) | [Support Me on Ko-fi](https://ko-fi.com/indicabunny)
