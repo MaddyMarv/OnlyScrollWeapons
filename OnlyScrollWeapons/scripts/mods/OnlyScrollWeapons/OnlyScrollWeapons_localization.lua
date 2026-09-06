@@ -3,7 +3,7 @@ return {
 		en = "Only Scroll Weapons",
 	},
 	mod_description = {
-		en = "Limits scroll wheel weapon selection to only switch between melee and gun, preventing accidental cycling into Blitz.",
+		en = "Restricts mouse wheel scrolling to switch between melee and ranged weapons only, preventing accidental Blitz or grenade swaps.",
 	},
 	tab_general = {
 		en = "General",

@@ -7,7 +7,7 @@
     "funding": {
         "kofi": "https://ko-fi.com/indicabunny"
     },
-    "description": "Limits scroll wheel weapon selection to only switch between melee and gun, preventing accidental cycling into Blitz.",
+    "description": "Restricts mouse wheel scrolling to switch between melee and ranged weapons only, preventing accidental Blitz or grenade swaps.",
     "order": {
         "require": [],
         "this_before": [],
