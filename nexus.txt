@@ -10,4 +10,5 @@ Standalone quality-of-life mod that limits mouse scroll wheel weapon selection t
 - Cycle If Already Equipped
 - Scroll From Non-Weapon Slot [Melee (Primary), Gun (Secondary)]
 
-[b]Links:[/b] [url=https://github.com/MaddyMarv/OnlyScrollWeapons]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
+[b]Links:[/b]
+[url=https://github.com/MaddyMarv/OnlyScrollWeapons]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
