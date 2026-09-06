@@ -1,0 +1,13 @@
+Standalone quality-of-life mod that limits mouse scroll wheel weapon selection to strictly switch between your melee and ranged weapons. Prevents accidentally scrolling into Blitz abilities, grenades, or pocketables during combat.
+
+[b]Options:[/b]
+
+[b]General[/b]
+- Scroll Mode [Cycle (Melee <-> Gun), Directional]
+- Scroll Cooldown (Seconds)
+- Scroll Sensitivity (Notches)
+- Invert Directional Scroll
+- Cycle If Already Equipped
+- Scroll From Non-Weapon Slot [Melee (Primary), Gun (Secondary)]
+
+[b]Links:[/b] [url=https://github.com/MaddyMarv/OnlyScrollWeapons]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
