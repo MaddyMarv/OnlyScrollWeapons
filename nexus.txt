@@ -1,7 +1,7 @@
 Restricts mouse wheel scrolling to switch between melee and ranged weapons only, preventing accidental Blitz or grenade swaps.
 
-[b]Options:[/b]
-
+[b]Mod Settings / Commands:[/b]
+[spoiler]
 [b]General[/b]
 - Scroll Mode [Cycle (Melee <-> Gun), Directional]
 - Scroll Cooldown (Seconds)
@@ -9,6 +9,7 @@ Restricts mouse wheel scrolling to switch between melee and ranged weapons only,
 - Invert Directional Scroll
 - Cycle If Already Equipped
 - Scroll From Non-Weapon Slot [Melee (Primary), Gun (Secondary)]
+[/spoiler]
 
 [b]Links:[/b]
 [url=https://github.com/MaddyMarv/OnlyScrollWeapons]Source Code[/url] | [url=https://www.nexusmods.com/profile/indicabunny]Nexus Mods Profile[/url] | [url=https://ko-fi.com/indicabunny]Support Me on Ko-fi[/url]
