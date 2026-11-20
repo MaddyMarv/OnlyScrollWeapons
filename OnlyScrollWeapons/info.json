@@ -8,10 +8,10 @@
         "kofi": "https://ko-fi.com/indicabunny"
     },
     "description": "Restricts mouse wheel scrolling to switch between melee and ranged weapons only, preventing accidental Blitz or grenade swaps.",
-    "order": {
-        "require": [],
-        "this_before": [],
-        "this_after": []
+    "dependencies": {
+        "required": [],
+        "self_after": [],
+        "self_before": []
     },
     "localization": {}
 }
